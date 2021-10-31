@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>视频详细信息-{{avid}}</title>
+    <style>
+        .my_left {
+            float: left;
+            width: 1000px;
+            text-align: center;
+        }
+        
+        .my_right {
+            float: left;
+            width: 300px;
+            border-left: 1.5px solid #a8a8a8;
+        }
+        
+        .my_video {
+            width: 900px;
+            height: 285px;
+            text-align: center;
+        }
+        
+        body {
+            margin-left: 150px;
+            margin-top: 60px;
+            margin-right: 150px;
+            margin-bottom: 200px;
+            text-align: center;
+        }
+        
+        .underscore {
+            border-bottom: 1.5px solid #a8a8a8;
+            width: 900px;
+            height: 50px;
+        }
+        
+        .my_title {
+            color: rgb(61, 61, 61);
+            width: 900px;
+            font-weight: bold;
+            vertical-align: bottom;
+            text-align: center;
+        }
+        
+        .my_introduce {
+            color: rgb(71, 93, 134);
+            width: 750px;
+            font-style: italic;
+            text-align: center;
+        }
+        
+        .my_introduce2 {
+            color: rgb(71, 93, 134);
+            width: 750px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        .placeholder_for_img {
+            float: left;
+            width: 15px;
+            height: 300px;
+        }
+        
+        .place_holder2 {
+            width: 200px;
+            height: 50px;
+        }
+        
+        .place_holder3 {
+            width: 900px;
+            height: 30px;
+        }
+        
+        .place_holder4 {
+            width: 900px;
+            height: 1px;
+        }
+        
+        .my_information {
+            width: 900px;
+            color: rgb(122, 80, 80);
+            text-align: center;
+        }
+        
+        .my_creator {
+            width: 250px;
+            text-align: center;
+            color: rgb(202, 129, 137);
+            line-height: 38px;
+        }
+        
+        .my_creator_introduce {
+            color: gray;
+            text-align: center;
+            width: 250px;
+        }
+        
+        .fans {
+            color: rgb(124, 104, 136);
+            line-height: 12px;
+            margin-top: 3px;
+        }
+        
+        .my_link {
+            color: rgb(146, 133, 90);
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="my_left" id="left">
+        <div class="underscore">
+            <p class="my_title" style="font-size:28px;" id="my_title_id">{{title}}</p>
+            <script>
+                var str = "{{title}}";
+                var my_size = 28;
+                if (str.length > 27)
+                    my_size = 23;
+                else if (str.length > 30)
+                    my_size = 18;
+                else if (str.length > 32)
+                    my_size = 14;
+                else if (str.length > 35)
+                    my_size = 12;
+                else if (str.length > 38)
+                    my_size = 10;
+                else if (str.length > 41)
+                    my_size = 8;
+                var placer = document.getElementById("my_title_id");
+                placer.style = "font-size:" + my_size.toString() + "px;";
+            </script>
+        </div>
+        <div class="my_video">
+            <div class="place_holder3"></div>
+            <a href={{url}} target="_blank">
+                <img src="" alt={ {url}} id="video_image" height="270" width="480" />
+            </a>
+            <script>
+                var placer = document.getElementById("video_image");
+                var my_path = "/static/pic/" + "{{avid}}" + ".jpg";
+                placer.src = my_path;
+            </script>
+        </div>
+        <div style="width:900px;">
+            <div style="margin:0 auto; margin-top:15px; border-bottom: 1.5px solid #a8a8a8; width:750px;">
+                <p class="my_introduce2" style="margin:0 auto;">____________</p>
+                <p class="my_introduce">{{introduce|safe|linebreaksbr}}</p>
+            </div>
+        </div>
+        <div style="float:left;width:900px;border-bottom:1.5px solid #a8a8a8;">
+            <p style="margin:0 auto; line-height:40px; width:650px; margin-top:0px; margin-bottom:10px; border-bottom:1.5px dashed #a8a8a8; color:rgb(31, 54, 43); font-size:26px">comments</p>
+            <p style="margin:0 auto; margin-top:12px; line-height:20px; width:650px; border-bottom:1.5px dashed #a8a8a8; color:rgb(111, 151, 131);">{{comment_0|safe|linebreaksbr}}</p>
+            <p style="margin:0 auto; margin-top:12px; line-height:20px; width:650px; border-bottom:1.5px dashed #a8a8a8; color:rgb(111, 151, 131);">{{comment_1|safe|linebreaksbr}}</p>
+            <p style="margin:0 auto; margin-top:12px; line-height:20px; width:650px; border-bottom:1.5px dashed #a8a8a8; color:rgb(111, 151, 131);">{{comment_2|safe|linebreaksbr}}</p>
+            <p style="margin:0 auto; margin-top:12px; line-height:20px; width:650px; border-bottom:1.5px dashed #a8a8a8; color:rgb(111, 151, 131);">{{comment_3|safe|linebreaksbr}}</p>
+            <p style="margin:0 auto; margin-top:12px; line-height:20px; width:650px; color:rgb(111, 151, 131);">{{comment_4|safe|linebreaksbr}}</p>
+        </div>
+        <div style="float:left; width:900px;">
+            <p class="my_information" style="line-height:0px;">
+                播放：{{view_cnt}} &nbsp; &nbsp; 弹幕：{{barrage_cnt}} &nbsp; &nbsp; 点赞：{{liked_num}} &nbsp; &nbsp; 投币：{{coin_num}} &nbsp; &nbsp; 收藏：{{collect_num}} &nbsp; &nbsp; 分享：{{share_num}} &nbsp; &nbsp; 评论：{{comment_num}}
+            </p>
+            <p class="my_information" style='line-height:20px; font-family: "Lucida Console", "Courier New", monospace; font-size:14px;'>
+                {{upload_time}}
+                <br><br><br>
+            </p>
+        </div>
+    </div>
+    <div class="my_right" id="right">
+        <div class="place_holder2"></div>
+        <div style="float:left;">
+            <div class="placeholder_for_img"></div>
+            <div style="width:250px; text-align:center; float:left;">
+                <div>
+                    <a href={{up_url}} target="_blank">
+                        <img src="" alt={ {uid}} id="up_image" height="150" width="150" style="border:1px solid rgb(170, 170, 170)" />
+                    </a>
+                    <script>
+                        var placer = document.getElementById("up_image");
+                        var my_path = "/static/creator/" + "{{uid}}" + ".jpg";
+                        placer.src = my_path;
+                    </script>
+                </div>
+                <div style="float:left;">
+                    <a href={{up_url}} target="_blank" style="text-decoration: none;">
+                        <div class="my_creator">{{creator_ID}}</div>
+                    </a>
+                    <div class="fans">粉丝:&nbsp;{{followers}}<br><br>uid:&nbsp;{{uid}}</div>
+                    <p class="my_creator_introduce">{{creator_introduce|safe|linebreaksbr}}</p>
+                    <p style="margin:0 auto; margin-top:20px; width:200px; border-bottom: 1.5px solid #a8a8a8;"></p>
+                </div>
+            </div>
+        </div>
+        <div style="float:left; width:300px; text-align:center;">
+            <a href="http://127.0.0.1:8000/home/?page=1">
+                <p class="my_link">主页-视频列表</p>
+            </a>
+            <a href="http://127.0.0.1:8000/creator/?page=1">
+                <p class="my_link">up主列表</p>
+            </a>
+            <a href="http://127.0.0.1:8000/search/">
+                <p class="my_link">搜索</p>
+            </a>
+
+        </div>
+    </div>
+    <script>
+        var orz_left = document.getElementById("left");
+        var h = orz_left.offsetHeight;
+        var my_debugger = document.getElementById("debugger");
+        var orz_right = document.getElementById("right");
+        h -= 48;
+        if (h > orz_right.offsetHeight) {
+            str = "height:" + h.toString() + "px;";
+            orz_right.style = str;
+        }
+    </script>
+</body>
+
+</html>

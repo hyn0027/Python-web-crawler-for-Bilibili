@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>在up主中搜索“{{key}}”的结果-page{{page}}</title>
+    <style>
+        .my_left {
+            float: left;
+            width: 1200px;
+            text-align: center;
+        }
+        
+        .my_right {
+            float: left;
+            width: 180px;
+            border-left: 1.5px solid #a8a8a8;
+        }
+        
+        body {
+            margin-left: 150px;
+            margin-top: 60px;
+            margin-right: 100px;
+            margin-bottom: 200px;
+            text-align: center;
+        }
+        
+        .my_link {
+            color: rgb(146, 133, 90);
+        }
+        
+        .my_video_intro {
+            width: 1121px;
+            height: 50px;
+            float: left;
+            text-align: left;
+            font-size: 28px;
+            color: rgb(61, 61, 61);
+            font-weight: bold;
+            vertical-align: bottom;
+            border-bottom: 1.5px solid #a8a8a8;
+        }
+        
+        .my_video_title {
+            color: rgb(36, 71, 112);
+            width: 132px;
+            margin: 0 auto;
+            margin-top: 0px;
+            margin-bottom: 16px;
+        }
+        
+        .my_video_block {
+            width: 159px;
+            height: 200px;
+            text-align: center;
+            float: left;
+        }
+        
+        .my_goto {
+            border: 2px solid rgb(84, 129, 106);
+            border-radius: 2px;
+            color: rgb(84, 129, 106);
+            width: 30px;
+            height: 23px;
+            font-size: 18px;
+            float: left;
+            text-align: center;
+        }
+        
+        .my_goto2 {
+            border: 2px solid rgb(84, 129, 106);
+            border-radius: 2px;
+            width: 30px;
+            height: 23px;
+            font-size: 18px;
+            background-color: rgb(84, 129, 106);
+            color: white;
+            float: left;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="my_left" id="left">
+        <div style="width:1200px; height:20px; float:left;"></div>
+        <div style="width:1150px; float:left; text-align: center;">
+            <div class="my_video_intro">&nbsp;&nbsp;&nbsp;&nbsp;在up主中搜索“{{key}}”的结果</div>
+            <div style="width:1100px; height: 40px; float:left; text-align: right; color:rgb(136, 125, 112);">共{{total_result}}个up主&nbsp;&nbsp;用时{{time}}ms</div>
+            <div style="width:1150px; height:5px; float:left;"></div>
+            {% for x in list %}
+            <div class="my_video_block">
+                <a href={{x.2}} style="text-decoration: none;" target="_blank">
+                    <img src={{x.3}} id="video_image" height="132" width="132" style="border: 1px solid rgb(184, 184, 184);" />
+                    <div class="my_video_title">{{x.1}}</div>
+                </a>
+            </div>
+            {% endfor %}
+            <div style="width:1121px; height:60px; float:left; border-top:1.5px solid #a8a8a8">
+                <div style="float:left; width:1121px; height:25px;"></div>
+                <div style="float:left; width:13px; height:25px;"></div>
+                <div style="float:left;">
+                    {% if page_before == 1 %}
+                    <a href={{before_url}} class="my_goto" style="text-decoration: none;">
+                        <div> &lt; </div>
+                    </a>
+                    {% endif %} &nbsp;
+                </div>
+                <div style="float:left;">
+                    {% if left_pass == 1 %}
+                    <a href={{left_url}} class="my_goto" style="text-decoration: none;">
+                        <div> 1 </div>
+                    </a>
+                    <div class="my_goto" style="border-color:white;">...</div>
+                    {% endif %} &nbsp;
+                </div>
+                {% for x in my_pages_goto %}
+                <div style="float:left;">
+                    {% if x.2 == "1" %}
+                    <a href={{x.1}} class="my_goto2" style="text-decoration: none;">
+                        <div>{{x.0}}</div>
+                    </a>
+                    {% else %}
+                    <a href={{x.1}} class="my_goto" style="text-decoration: none;">
+                        <div>{{x.0}}</div>
+                    </a>
+                    {% endif %} &nbsp;
+                </div>
+                {% endfor %}
+                <div style="float:left;">
+                    {% if right_pass == 1 %}
+                    <div class="my_goto" style="border-color:white;">...</div>
+                    <a href={{right_url}} class="my_goto" style="text-decoration: none;">
+                        <div> {{page_total}} </div>
+                    </a>
+                    {% endif %} &nbsp;
+                </div>
+                <div style="float:left;">
+                    {% if page_next == 1 %}
+                    <a href={{next_url}} class="my_goto" style="text-decoration: none;">
+                        <div> &gt; </div>
+                    </a>
+                    {% endif %} &nbsp;
+                </div>
+                <div class="my_goto" style="border-color:white; width:45px;">&nbsp;&nbsp;跳至</div>
+                <div style="float:left; width:40px; float:left;">
+                    <form action="http://127.0.0.1:8000/search_result/" method="get">
+                        <input type="text" name="key" value={{key}} style="display:none;width:20px; height:20px;">
+                        <input type="text" name="choose" value="up" style="display:none;width:20px; height:20px;">
+                        <input type="text" name="page" style="width:25px; height:22px;">
+                        <input type="submit" value="Submit" style="display:none;" />
+                    </form>
+                </div>
+                <div class="my_goto" style="border-color:white; width:25px;">页</div>
+            </div>
+        </div>
+        <div style="float:left; width:1000px;"><br><br><br><br></div>
+    </div>
+    <div class="my_right" id="right">
+        <div class="place_holder2"></div>
+        <div style="float:left; width:200px; text-align:center;">
+            <a href="http://127.0.0.1:8000/home/?page=1">
+                <p class="my_link">主页-视频列表</p>
+            </a>
+            <a href="">
+                <p class="my_link">up主列表</p>
+            </a>
+            <a href="http://127.0.0.1:8000/search/">
+                <p class="my_link">搜索</p>
+            </a>
+        </div>
+    </div>
+    <script>
+        var orz_left = document.getElementById("left");
+        var h = orz_left.offsetHeight;
+        var orz_right = document.getElementById("right");
+        h -= 70;
+        if (h > orz_right.offsetHeight) {
+            str = "height:" + h.toString() + "px;";
+            orz_right.style = str;
+        }
+    </script>
+</body>
+
+</html>

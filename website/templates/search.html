@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>搜索</title>
+    <style>
+        .my_left {
+            float: left;
+            width: 640px;
+            text-align: center;
+        }
+        
+        .my_right {
+            float: left;
+            width: 200px;
+            height: 640px;
+            border-left: 1.5px solid #a8a8a8;
+        }
+        
+        body {
+            margin-left: 500px;
+            margin-top: 60px;
+            margin-right: 150px;
+            margin-bottom: 200px;
+            text-align: center;
+        }
+        
+        .my_link {
+            color: rgb(146, 133, 90);
+        }
+        
+        .place_holder1 {
+            width: 600px;
+            height: 270px;
+            float: left;
+        }
+        
+        .search_blank {
+            width: 700px;
+            height: 40px;
+            float: left;
+        }
+        
+        .search_text {
+            width: 50px;
+            height: 40px;
+            float: left;
+            border: 2px solid rgb(102, 83, 102);
+            border-radius: 5px;
+            background-color: rgb(102, 83, 102);
+            margin: 0 auto;
+            margin-top: 5px;
+            text-align: center;
+            color: white;
+        }
+        
+        .my_choice {
+            width: 75px;
+            height: 40px;
+            float: left;
+            color: rgb(102, 83, 102);
+        }
+        
+        .my_ratio {
+            color: rgb(102, 83, 102);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="my_left" id="left">
+        <div class="place_holder1"></div>
+        <div class="search_blank">
+            <form action="http://127.0.0.1:8000/search_result/" method="get">
+                <div style="width:400px; height:40px; float: left;">
+                    <input type="text" name="key" style="width:400px; height:40px; float: left; border-radius:5px;">
+                </div>
+                <div class="my_choice">
+                    <input type="radio" class="my_ratio" name="choose" value="video" checked="checked">视频<br>
+                    <input type="radio" class="my_ratio" name="choose" value="up" checked="checked">up主
+                </div>
+                <input class="search_text" type="submit" value="搜索">
+            </form>
+        </div>
+    </div>
+    <div class="my_right" id="right">
+        <div class="place_holder2"></div>
+        <div style="float:left; width:200px; text-align:center;">
+            <a href="http://127.0.0.1:8000/home/?page=1">
+                <p class="my_link">主页-视频列表</p>
+            </a>
+            <a href="http://127.0.0.1:8000/creator/?page=1">
+                <p class="my_link">up主列表</p>
+            </a>
+            <a href="">
+                <p class="my_link">搜索</p>
+            </a>
+        </div>
+    </div>
+    <script>
+        var orz_left = document.getElementById("left");
+        var h = orz_left.offsetHeight;
+        var my_debugger = document.getElementById("debugger");
+        var orz_right = document.getElementById("right");
+        if (h > orz_right.offsetHeight) {
+            str = "height:" + h.toString() + "px;";
+            orz_right.style = str;
+        }
+    </script>
+</body>
+
+</html>
